@@ -9,7 +9,8 @@
       href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
 
   <body class="home-body">
@@ -39,7 +40,7 @@
       </nav>
     </header>
     <section class="main">
-      <img src="../assets/cairo_university.jpg" class="home-img" />
+      <img src="{% static 'assets/cairo_university.jpg' %}" class="home-img" />
       <section class="home-main">
         <h1>Student Affairs</h1>
 
@@ -74,6 +75,6 @@
         <li>Ahmed Mohamed</li>
       </ul>
     </footer>
-    <script src="../js/navbar.js"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
   </body>
 </html>
