@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+
+</head>
+
+<body>
+
+  <header class="navContener">
+    <nav class="navbar">
+      <a class="nav-brand">Students Affairs</a>
+
+      <ul class="nav-menu">
+        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="add_student.html">Add New Student</a></li>
+        <li class="nav-item"><a class="nav-link" href="student_list.html">Student List</a></li>
+        <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+
+    </nav>
+  </header>
+  <hr class="dashedHr">
+  <section class="main">
+  <div class="card">
+
+    <form id="depStudentForm" action="home.html">
+      <div class="inputbox">
+        <input type="text" name="name" id="name" required autofocus disabled>
+        <label for="name">Your Name</label>
+      </div>
+      <div class="inputbox">
+        <input type="number" name="IDnum" id="ID" required max="20231999" maxlength="9" disabled>
+        <label for="ID">Your ID</label>
+      </div>
+
+      <p> your availabe departments are </p>
+
+      <div class="inputbox">
+        <input list="Department" id="dep" name="dep" required>
+        <label for="dep">Department</label>
+        <datalist id="Department">
+          <option value="IT">IT</option>
+          <option value="IS">IS</option>
+          <option value="CS">CS</option>
+          <option value="DS">DS</option>
+        </datalist>
+      </div>
+
+
+
+      <div class="sub">
+        <input class="btn" type="submit" name="save" id="save" value="save">
+      </div>
+
+    </form>
+  </div>
+  <hr class="dashedHr">
+</section>
+  <footer>
+    <h3>Produced By</h3>
+    <ul>
+      <li>Mohammed Al-Mansori</li>
+      <li>Ahmed Adel</li>
+      <li>Sahar Mohamed</li>
+      <li>John Samy</li>
+      <li>Ahmed Mohamed</li>
+    </ul>
+  </footer>
+
+  <script src="../js/navbar.js"></script>
+  <script src="../js/assign_department.js"></script>
+
+</body>
+
+</html>

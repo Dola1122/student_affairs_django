@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <title>Add Student</title>
+</head>
+
+<body>
+
+    <header class="navContener">
+        <nav class="navbar">
+            <a class="nav-brand">Students Affairs</a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link " href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="add_student.html">Add New Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="student_list.html">Student List</a></li>
+                <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+        </nav>
+    </header>
+    <hr class="dashedHr">
+    <div class="card">
+        <h1>Add student</h1>
+        <section class="main">
+
+        <form id="addStudentForm" action="home.html">
+            <div class="inputbox">
+                <input type="text" name="name" id="name" required autofocus>
+                <label for="name">Enter Your Name</label>
+            </div>
+            <div class="inputbox">
+                <input type="email " name="email" id="email" required>
+                <label for="email">Enter Your Email</label>
+            </div>
+            <div class="inputbox">
+                <input type="tel" name="mobile" id="mobile" required>
+                <label for="mobile">Enter Your Phone Number</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" name="IDnum" id="ID" required max="20231999" maxlength="9">
+                <label for="ID">Enter Your ID</label>
+            </div>
+            <div class="inputbox">
+                <input type="date" name="birthDate" id="birthDate" required>
+                <label for="birthDate">Enter Your Birth Date</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" name="gpa" id="gpa" step="0.01" required min="0" max="4">
+                <label for="gpa">Enter Your GPA</label>
+
+            </div>
+            <div class="inputbox">
+                <input type="number" name="level" id="level" step="1" min="1" max="4" required>
+                <label for="level">Enter Your Level</label>
+            </div>
+            <div class="inputbox">
+                <input list="Department" name="dep" id="dep" required>
+                <label for="dep">Department</label>
+                <datalist id="Department">
+                    <option value="IT">IT</option>
+                    <option value="IS">IS</option>
+                    <option value="CS">CS</option>
+                    <option value="DS">DS</option>
+                </datalist>
+            </div>
+            <div class="inputbox">
+                <input list="Gender" id="gender" name="gender" required>
+                <label for="gender">Enter Your Gender</label>
+                <datalist id="Gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </datalist>
+            </div>
+
+            <div class="inputbox">
+                <div>
+                    <input type="radio" name="status" id="active" value="active" checked>
+                    <label for="active">Active</label>
+                </div>
+            </div>
+            <div class="inputbox">
+
+                <div>
+                    <input type="radio" name="status" value="inactive" id="inactive">
+                    <label for="inactive">Inactive</label>
+                </div>
+            </div>
+
+
+            <div class="sub">
+                <input class="btn" type="submit" name="save" id="save" value="save">
+            </div>
+            <div class="res">
+                <input class="btn" type="reset" name="Reset" id="reset ">
+            </div>
+
+        </form>
+
+    </div>
+    <hr class="dashedHr">
+</section>
+
+    <footer>
+        <h3>Produced By</h3>
+        <ul>
+            <li>Mohammed Al-Mansori</li>
+            <li>Ahmed Adel</li>
+            <li>Sahar Mohamed</li>
+            <li>John Samy</li>
+            <li>Ahmed Mohamed</li>
+        </ul>
+    </footer>
+
+    <script src="../js/add_student.js"></script>
+    <script src="../js/navbar.js"></script>
+</body>
+
+</html>

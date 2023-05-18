@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- d -->
+</head>
+
+<body>
+    <header class="navContener">
+        <nav class="navbar">
+            <a class="nav-brand">Students Affairs</a>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="add_student.html">Add New Student</a></li>
+                <li class="nav-item"><a class="nav-link active" href="student_list.html">Student List</a></li>
+                <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+        </nav>
+    </header>
+    <section class="main">
+        <table border="1" inputmode="html" class="table">
+        <caption class="tableName">student list</caption> <!--naming the table-->
+        <thead class="tableHead">
+            <tr>
+                <td>name</td>
+                <td>ID</td>
+                <td>Date of birth</td>
+                <td>GPA</td>
+                <td>level</td>
+                <td>Department</td>
+                <td>Gender</td>
+                <td>Email</td>
+                <td>Number</td>
+                <td>Status</td>
+
+            </tr>
+        </thead>
+        <tbody id="tableBodyList" class="tableList">
+
+        </tbody>
+    </table>
+</section>
+
+    <footer>
+        <h3>Produced By</h3>
+        <ul>
+            <li>Mohammed Al-Mansori</li>
+            <li>Ahmed Adel</li>
+            <li>Sahar Mohamed</li>
+            <li>John Samy</li>
+            <li>Ahmed Mohamed</li>
+        </ul>
+    </section>
+    </footer>
+
+    <script src="../js/navbar.js"></script>
+    <script src="../js/student_list.js"></script>
+</body>
+
+</html>
