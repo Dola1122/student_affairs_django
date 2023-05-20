@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import Admin
+from .models import Admin, Student
 from django.contrib.auth.hashers import make_password
 from .forms import LoginForm
 from django.contrib import messages
@@ -11,6 +11,34 @@ from django.contrib import messages
 
 ####################  Ahmed Adel Start  ####################
 
+def add_student(request):
+    template = loader.get_template('html/add_student.html')
+    return HttpResponse(template.render())
+
+def add_student(request):
+    if request.method == 'POST':
+        # Create a new student object with the submitted form data
+        student = Student(
+            name=request.POST['name'],
+            email=request.POST['email'],
+            mobile=request.POST['mobile'],
+            IDnum=request.POST['IDnum'],
+            birthDate=request.POST['birthDate'],
+            gpa=request.POST['gpa'],
+            level=request.POST['level'],
+            dep=request.POST['dep'],
+            gender=request.POST['gender'],
+            status=request.POST['status']
+        )
+        # Save the student object to the database
+        student.save()
+        # Display a success message
+        messages.success(request, 'Student added successfully!')
+        # Redirect to the same page or any other page you desire
+        # return redirect('add_student')
+
+    # If the request method is GET, render the add_student.html template
+    return render(request, 'html/add_student.html')
 
 ####################  Ahmed Adel End    ####################
 
@@ -18,6 +46,13 @@ from django.contrib import messages
 
 
 ####################  Mohamed Elmanori Start  ####################
+def edit_student(request):
+  template = loader.get_template('html/edit_student.html')
+  return HttpResponse(template.render())
+
+def assign_department(request):
+  template = loader.get_template('html/assign_department.html')
+  return HttpResponse(template.render())
 
 
 ####################  Mohamed Elmanori End    ####################
@@ -80,6 +115,9 @@ def login_view(request):
 
 ####################  Ahmed Younes Start  ####################
 
+def student_list(request):
+  template = loader.get_template('html/student_list.html')
+  return HttpResponse(template.render())
 
 ####################  Ahmed Younes End    ####################
 
@@ -88,6 +126,9 @@ def login_view(request):
 
 ####################  Sahar Start  ####################
 
+def search(request):
+  template = loader.get_template('html/search.html')
+  return HttpResponse(template.render())
 
 ####################  Sahar End    ####################
 

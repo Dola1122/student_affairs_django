@@ -6,6 +6,21 @@ from django.db import models
 
 ####################  Ahmed Adel Start  ####################
 
+class Student(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    mobile = models.CharField(max_length=15)
+    IDnum = models.CharField(max_length=9)
+    birthDate = models.DateField()
+    gpa = models.DecimalField(max_digits=3, decimal_places=2)
+    level = models.PositiveIntegerField()
+    dep = models.CharField(max_length=255)
+    gender = models.CharField(max_length=10)
+    status = models.CharField(max_length=10, choices=[('active', 'Active'), ('inactive', 'Inactive')])
+
+    def __str__(self):
+        return self.name
+
 
 ####################  Ahmed Adel End    ####################
 
