@@ -2,14 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search🔍</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+        rel="stylesheet"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
 </head>
 
@@ -39,7 +41,8 @@
         <hr>
 
         <p>
-        <h1>Search🔍</h1>
+{#        <h1 id="pageTitle" style="font-size: 2.7rem; margin: 30px 0px 40px 0px;">Search🔍</h1>#}
+        <h1 id="pageTitle">Search🔍</h1>
         </p>
 
         <!-- <div>
@@ -47,7 +50,9 @@
         <button id="searchBtn">🔍</button>
     </div> -->
         <div>
-            <input type="text" id="myInput" placeholder="Search..." autofocus>
+{#            <input type="text" id="myInput" placeholder="Type here to search..." autofocus style="width: 40%; margin: auto;">#}
+            <input type="text" id="myInput" placeholder="Type here to search..." autofocus>
+{#            <select id="searchType" style="width: 10%; margin: 2px 0px 2px 4px; font-family: 'Merriweather', serif; padding: 2px 0px 2px 5px;">#}
             <select id="searchType">
                 <option value="name">Name</option>
                 <option value="id">ID</option>
@@ -56,62 +61,53 @@
         </div>
 
 
-        <table border="1" inputmode="html" class="table">
-            <caption class="tableName">student list</caption> <!--naming the table-->
-            <thead class="tableHead">
+{#        <table inputmode="html" id="searched" style="border-collapse: collapse; margin: 50px 0px 50px 0px; font-size: 0.9em; min-width: 1400px;">#}
+        <table inputmode="html" id="searched">
+            <caption class="tableName">Active students that matches your search</caption> <!--naming the table-->
+            <thead id="searchTableHead">
+{#                <tr style="background-color: #4b5054; color: white; font-width: bold;">#}
                 <tr>
-                    <td>name</td>
+                    <td>Name</td>
                     <td>ID</td>
                     <td>Date of birth</td>
                     <td>GPA</td>
-                    <td>level</td>
+                    <td>Level</td>
                     <td>Department</td>
                     <td>Gender</td>
                     <td>Email</td>
-                    <td>Number</td>
-                    <td>Status</td>
+                    <td>Phone number</td>
+                    <td></td>
+                    <td></td>
+{#                    <td>Status</td>#}
 
                 </tr>
             </thead>
-            <tbody id="tableBodySearch" class="tableList">
-                <!-- <tr>
-                <td>faraj Mohsen</td>
-                <td>2</td>
-                <td>2023-04-07</td>
-                <td>0.24</td>
-                <td>2</td>
-                <td>DS</td>
-                <td>Female</td>
-                <td>i.vmd77@gmail.com</td>
-                <td>+201158819399</td>
-                <td>inactive</td>
-            </tr>
-            <tr>
-                <td>hoo</td>
-                <td>1</td>
-                <td>1</td>
-                <td>3</td>
-                <td>2</td>
-                <td>2</td>
-                <td>male</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+{#            <tbody id="searchTableBody" style="font-weight: normal;">#}
+            <tbody id="searchTableBody">
+                {% for student in students %}
+                    {% if student.status == 'active' or student.status == 'Active' %}
+{#                        <tr style="border-bottom: 1px solid #dddddd">#}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.IDnum }}</td>
+                            <td>{{ student.birthDate }}</td>
+                            <td>{{ student.gpa }}</td>
+                            <td>{{ student.level }}</td>
+                            <td>{{ student.dep }}</td>
+                            <td>{{ student.gender }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>{{ student.mobile }}</td>
+{#                            <td>{{ student.status }}</td>#}
+                            <td><a type="button" href="html/edit_student.html/{{ student.id }}" id="editButton" class="studentButtons">Edit</a></td>
+                            {% if student.dep == 'General' %}
+                                <td><a type="button" href="html/assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
+                            {% else %}
+                                <td><a type="button" href="html/assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Change department</a></td>
+                            {% endif %}
 
-
-            </tr>
-            <tr>
-                <td>ali Mohsen</td>
-                <td>3</td>
-                <td>2023-04-06</td>
-                <td>0</td>
-                <td>1</td>
-                <td>IT</td>
-                <td>Male</td>
-                <td>i.vmd77@gmail.com</td>
-                <td>+201158819399</td>
-                <td>active</td>
-            </tr> -->
+                        </tr>
+                    {% endif %}
+                {% endfor %}
             </tbody>
         </table>
     </section>
@@ -126,8 +122,17 @@
         </ul>
     </footer>
 
-    <script src="../js/navbar.js"></script>
-    <script src="../js/search.js"></script>
+    <script>
+
+        let arrDataStorage = [];
+
+        {% for student in students %}
+            arrDataStorage.push(student);
+        {% endfor %}
+
+    </script>
+    <script src="{% static '/js/navbar.js' %}"></script>
+    <script src="{% static '/js/search.js' %}"></script>
 
 
 
