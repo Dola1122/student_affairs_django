@@ -178,5 +178,9 @@ def search(request):
   template = loader.get_template('html/search.html')
   return HttpResponse(template.render())
 
+def search(request):
+    students = Student.objects.all()
+    return render(request, 'html/search.html', {'students':students})
+
 ####################  Sahar End    ####################
 

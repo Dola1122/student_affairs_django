@@ -11,7 +11,9 @@ urlpatterns = [
     path('html/student_list.html',views.student_list,name='student_list'),
     #path('html/edit_student.html',views.edit_student,name='edit_student'),
     #path('html/assign_department.html',views.assign_department,name='assign_department'),
+    #path('html/edit_student.html/<int:id>',views.edit_student,name='edit_student'),
     path('html/edit_student.html/<int:id>',views.edit_student,name='edit_student'),
     path('html/edit_student.html/updaterecord/<int:id>',views.updaterecord,name='updaterecord'),         
     path('delete/<int:id>', views.delete, name='delete'),
+    path('html/assign_department.html/<int:id>',views.assign_department,name='assign_department'),
 ]
