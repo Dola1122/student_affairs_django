@@ -9,8 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
-
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
@@ -40,38 +40,39 @@
     <div class="card">
         <h1>Edit student</h1>
 
-        <form id="editStudentForm" action="home.html">
+        <form id="editStudentForm" action="updaterecord/{{ student.id }}" method="post">
+            {% csrf_token %}
             <div class="inputbox">
-                <input type="text" name="name" id="name" required autofocus>
+                <input type="text" name="name" id="name" value="{{ student.name }}"  required autofocus>
                 <label for="name">Enter Your Name</label>
             </div>
             <div class="inputbox">
-                <input type="email " name="email" id="email" required>
+                <input type="email " name="email" id="email" value="{{ student.email }}" required>
                 <label for="email">Enter Your Email</label>
             </div>
             <div class="inputbox">
-                <input type="tel" name="mobile" id="mobile" required disabled>
+                <input type="tel" name="mobile" id="mobile" value="{{ student.mobile }}" required disabled>
                 <label for="mobile">Your Phone Number</label>
             </div>
             <div class="inputbox">
-                <input type="number" name="IDnum" id="ID" required max="20231999" maxlength="9" disabled>
+                <input type="number" name="IDnum" id="ID" value="{{ student.IDnum }}" required max="20231999" maxlength="9" disabled>
                 <label for="ID">Your ID</label>
             </div>
             <div class="inputbox">
-                <input type="date" name="birthDate" id="birthDate" required>
+                <input type="text" name="birthDate" id="birthDate" value="{{ student.birthDate }}" required disabled>
                 <label for="birthDate">Enter Your Birth Date</label>
             </div>
             <div class="inputbox">
-                <input type="number" name="gpa" id="gpa" step="0.01" required min="0" max="4">
+                <input type="number" name="gpa" id="gpa" value="{{ student.gpa }}" step="0.01" required min="0" max="4">
                 <label for="gpa">Enter Your GPA</label>
 
             </div>
             <div class="inputbox">
-                <input type="number" name="level" id="level" step="1" min="1" max="4" required>
+                <input type="number" name="level" id="level" value="{{ student.level }}" step="1" min="1" max="4" required>
                 <label for="level">Enter Your Level</label>
             </div>
             <div class="inputbox">
-                <input list="Department" id="dep" name="dep" required disabled>
+                <input list="Department" id="dep" name="dep" value="{{ student.dep }}" required disabled>
                 <label for="dep">Department</label>
                 <datalist id="Department">
                     <option value="IT">IT</option>
@@ -81,7 +82,7 @@
                 </datalist>
             </div>
             <div class="inputbox">
-                <input list="Gender" id="gender" name="gender" required>
+                <input list="Gender" id="gender" name="gender" value="{{ student.gender }}" required>
                 <label for="gender">Enter Your Gender</label>
                 <datalist id="Gender">
                     <option value="Male">Male</option>
@@ -108,7 +109,7 @@
 
         </form>
         <div class="res">
-            <button type="button" class="btn" id="delete">Delete</button>
+            <button type="button" a href="delete/{{ student.id }}" class="btn" id="delete">Delete</button>
         </div>
     </div>
     <hr class="dashedHr">
@@ -123,9 +124,11 @@
             <li>Ahmed Mohamed</li>
         </ul>
     </footer>
+    <!-- <script src="../js/edit_student.js"></script>
+    <script src="../js/navbar.js"></script> -->
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/edit_student.js' %}"></script>
 
-    <script src="../js/navbar.js"></script>
-    <script src="../js/edit_student.js"></script>
 
 </body>
 
