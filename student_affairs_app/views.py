@@ -75,10 +75,10 @@ def updaterecord(request, id):
   student.gender = gender
   student.status = status
   student.save()
-  template = loader.get_template('html/student_list.html')
-  return HttpResponse(template.render())
+  #template = loader.get_template('html/student_list.html')
+  #return HttpResponse(template.render())
 
-  #return HttpResponseRedirect(reverse('student_list'))
+  return HttpResponseRedirect(reverse('student_list'))
 
 
 def delete(request, id):
@@ -88,14 +88,6 @@ def delete(request, id):
 
 
 
-  """
-  This function loads and renders an HTML template for assigning a department.
-  
-  :param request: The request object represents the HTTP request that the user has made to the server.
-  It contains information such as the HTTP method used (GET, POST, etc.), the headers, the URL, and
-  any data submitted in the request
-  :return: an HTTP response that renders the 'assign_department.html' template.
-  """
 def assign_department(request):
   template = loader.get_template('html/assign_department.html')
   return HttpResponse(template.render())
