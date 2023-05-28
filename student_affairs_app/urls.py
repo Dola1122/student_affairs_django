@@ -14,6 +14,6 @@ urlpatterns = [
     #path('html/edit_student.html/<int:id>',views.edit_student,name='edit_student'),
     path('html/edit_student.html/<int:id>',views.edit_student,name='edit_student'),
     path('html/edit_student.html/updaterecord/<int:id>',views.updaterecord,name='updaterecord'),         
-    path('delete/<int:id>', views.delete, name='delete'),
+    path('html/edit_student.html/delete/<int:id>', views.delete, name='delete'),
     path('html/assign_department.html/<int:id>',views.assign_department,name='assign_department'),
 ]

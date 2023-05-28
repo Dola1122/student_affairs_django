@@ -19,10 +19,10 @@
             <a class="nav-brand">Students Affairs</a>
 
             <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="add_student.html">Add New Student</a></li>
-                <li class="nav-item"><a class="nav-link" href="student_list.html">Student List</a></li>
-                <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'add_student' %}">Add New Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'student_list' %}">Student List</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">Search</a></li>
 
             </ul>
             <div class="hamburger">
@@ -42,6 +42,7 @@
 
         <form id="editStudentForm" action="updaterecord/{{ student.id }}" method="post">
             {% csrf_token %}
+            {{ form.as_p }}
             <div class="inputbox">
                 <input type="text" name="name" id="name" value="{{ student.name }}"  required autofocus>
                 <label for="name">Enter Your Name</label>
@@ -109,7 +110,7 @@
 
         </form>
         <div class="res">
-            <button type="button" a href="delete/{{ student.id }}" class="btn" id="delete">Delete</button>
+            <button onclick="location.href='delete/{{ student.id }}'" type="button" class="btn" id="delete">Delete</button>
         </div>
     </div>
     <hr class="dashedHr">
@@ -124,10 +125,9 @@
             <li>Ahmed Mohamed</li>
         </ul>
     </footer>
-    <!-- <script src="../js/edit_student.js"></script>
-    <script src="../js/navbar.js"></script> -->
+
     <script src="{% static 'js/navbar.js' %}"></script>
-    <script src="{% static 'js/edit_student.js' %}"></script>
+   
 
 
 </body>
