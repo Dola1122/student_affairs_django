@@ -92,8 +92,36 @@ def assign_department(request):
   template = loader.get_template('html/assign_department.html')
   return HttpResponse(template.render())
 
+def assign_department(request, id):
+  student = Student.objects.get(id=id)
+  template = loader.get_template('html/assign_department.html')
+  context = {
+    'student': student
+    }
+  return HttpResponse(template.render(context, request))
 
+def updateDep(request, id):
 
+  # name = request.POST['name']
+  # email = request.POST['email']
+  # gpa = request.POST['gpa']
+  dep = request.POST['dep']
+  # level = request.POST['level']
+  # gender = request.POST['gender']
+  # status = request.POST['status']
+  student = Student.objects.get(id=id)
+  # student.name = name
+  student.dep = dep
+  # student.email = email
+  # student.gpa = gpa
+  # student.level = lev/el
+  # student.gender = gender
+  # student.status = status
+  student.save()
+  #template = loader.get_template('html/student_list.html')
+  #return HttpResponse(template.render())
+
+  return HttpResponseRedirect(reverse('student_list'))
 
 ####################  Mohamed Elmanori End    ####################
 
