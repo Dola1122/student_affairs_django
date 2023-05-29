@@ -98,11 +98,11 @@
                             <td>{{ student.email }}</td>
                             <td>{{ student.mobile }}</td>
 {#                            <td>{{ student.status }}</td>#}
-                            <td><a type="button" href="html/edit_student.html/{{ student.id }}" id="editButton" class="studentButtons">Edit</a></td>
+                            <td><a type="button" href="edit_student.html/{{ student.id }}" id="editButton" class="studentButtons">Edit</a></td>
                             {% if student.dep == 'General' %}
-                                <td><a type="button" href="html/assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
+                                <td><a type="button" href="assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
                             {% else %}
-                                <td><a type="button" href="html/assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Change department</a></td>
+                                <td><a type="button" href="assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Change department</a></td>
                             {% endif %}
 
                         </tr>
