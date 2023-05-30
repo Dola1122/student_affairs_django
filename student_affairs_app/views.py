@@ -35,7 +35,7 @@ def add_student(request):
         # Save the student object to the database
         student.save()
         # Display a success message
-        messages.success(request, 'Student added successfully!')
+        messages.success(request, 'Student added successfully!',extra_tags='once')
         # Redirect to the same page or any other page you desire
         return redirect('add_student')
 
@@ -163,10 +163,8 @@ def signup(request):
         new_user.save()
 
         return redirect('login.html')
+    return render(request, 'html/signup.html')
 
-    stored_messages = messages.get_messages(request)
-    stored_messages.used = True  # Clear the messages after retrieving them
-    return render(request, 'html/signup.html', {'messages': stored_messages})
 
 
 def login_view(request):
@@ -177,15 +175,16 @@ def login_view(request):
             password = request.POST['password']
             user = Admin.objects.filter(username=username,password=password)
             if user.exists():
-                messages.info(request, f"You are now logged in as {username}.")
+                # messages.info(request, f"You are now logged in as {username}.")
                 return redirect('home.html')
             else:
-                messages.error(request, "Invalid username or password.")
+                messages.error(request, "Invalid username or password.",extra_tags='once')
         else:
-            messages.error(request, "Invalid username or password.")
+            messages.error(request, "Invalid username or password.",extra_tags='once')
     else:
         form = LoginForm()
     return render(request=request, template_name='html/login.html', context={'form': form})
+    
 ####################  John End    ####################
 
 
