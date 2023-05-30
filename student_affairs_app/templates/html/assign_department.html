@@ -9,7 +9,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Nabla&family=Sacramento&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
+    {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
 </head>
 
@@ -20,10 +21,10 @@
       <a class="nav-brand">Students Affairs</a>
 
       <ul class="nav-menu">
-        <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="add_student.html">Add New Student</a></li>
-        <li class="nav-item"><a class="nav-link" href="student_list.html">Student List</a></li>
-        <li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'add_student' %}">Add New Student</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'student_list' %}">Student List</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'search' %}">Search</a></li>
 
       </ul>
       <div class="hamburger">
@@ -38,20 +39,22 @@
   <section class="main">
     <div class="card">
 
-      <form id="depStudentForm" action="home.html">
+      <form id="depStudentForm" action="updateDep/{{ student.id }}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
         <div class="inputbox">
-          <input type="text" name="name" id="name" required autofocus disabled>
+          <input type="text" name="name" id="name" value="{{ student.name }}" required autofocus disabled>
           <label for="name">Your Name</label>
         </div>
         <div class="inputbox">
-          <input type="number" name="IDnum" id="ID" required max="20231999" maxlength="9" disabled>
+          <input type="number" name="IDnum" id="ID" value="{{ student.IDnum }}" required max="20231999" maxlength="9" disabled>
           <label for="ID">Your ID</label>
         </div>
 
         <p> your availabe departments are </p>
 
         <div class="inputbox">
-          <input list="Department" id="dep" name="dep" required>
+          <input list="Department" id="dep" value="{{ student.dep }}" name="dep" required>
           <label for="dep">Department</label>
           <datalist id="Department">
             <option value="Genral">Genral</option>
@@ -84,9 +87,9 @@
     </ul>
   </footer>
 
-  <script src="../js/navbar.js"></script>
-  <script src="../js/assign_department.js"></script>
-
+  <!-- <script src="../js/navbar.js"></script>
+  <script src="../js/assign_department.js"></script> -->
+  <script src="{% static 'js/navbar.js' %}"></script>
 </body>
 
 </html>
