@@ -155,13 +155,18 @@ def signup(request):
         if existing_user.exists():
             context = {'error_message': 'Username already taken!'}
             return render(request, 'html/signup.html', context)
-
+        existing_user = Admin.objects.filter(email=entered_email)
+        if existing_user.exists():
+            context = {'error_message': 'Email already taken!'}
+            return render(request, 'html/signup.html', context)
         new_user = Admin(username=entered_username, phone=entered_phone, email=entered_email,password=entered_password, gender=entered_gender)
         new_user.save()
 
         return redirect('login.html')
 
-    return render(request, 'html/signup.html')
+    stored_messages = messages.get_messages(request)
+    stored_messages.used = True  # Clear the messages after retrieving them
+    return render(request, 'html/signup.html', {'messages': stored_messages})
 
 
 def login_view(request):

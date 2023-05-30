@@ -19,6 +19,9 @@
     <header class="start-header">
       <h1>Signup</h1>
     </header>
+    {% if error_message %}
+    <ul>{{ error_message }}</ul>
+    {% endif %}
     <form method="POST" class="user-data-form">
       {% csrf_token %}
       {{ form.as_p }}
