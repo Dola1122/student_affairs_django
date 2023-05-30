@@ -53,7 +53,25 @@
             </tr>
         </thead>
         <tbody id="tableBodyList" class="tableList">
+            {% for student in students %}
+                    {% if student.status == 'active' or student.status == 'Active' %}
+{#                        <tr style="border-bottom: 1px solid #dddddd">#}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.IDnum }}</td>
+                            <td>{{ student.birthDate }}</td>
+                            <td>{{ student.gpa }}</td>
+                            <td>{{ student.level }}</td>
+                            <td>{{ student.dep }}</td>
+                            <td>{{ student.gender }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>{{ student.mobile }}</td>
+                            <td>{{ student.status }}</td>
+                            
 
+                        </tr>
+                    {% endif %}
+                {% endfor %}
         </tbody>
     </table>
 </section>
@@ -70,8 +88,10 @@
     </section>
     </footer>
 
-    <script src="../js/navbar.js"></script>
-    <script src="../js/student_list.js"></script>
+    <!-- <script src="../js/navbar.js"></script>
+    <script src="../js/student_list.js"></script> -->
+
+    <script src="{% static 'js/navbar.js' %}"></script>
 </body>
 
 </html>

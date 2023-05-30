@@ -116,8 +116,8 @@ def login_view(request):
 ####################  Ahmed Younes Start  ####################
 
 def student_list(request):
-  template = loader.get_template('html/student_list.html')
-  return HttpResponse(template.render())
+  students = Student.objects.all()
+  return render(request, 'html/student_list.html', {'students':students})
 
 ####################  Ahmed Younes End    ####################
 
