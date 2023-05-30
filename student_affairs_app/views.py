@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Admin, Student
 from django.contrib.auth.hashers import make_password
@@ -46,13 +47,81 @@ def add_student(request):
 
 
 ####################  Mohamed Elmanori Start  ####################
-def edit_student(request):
+# def edit_student(request):
+#   template = loader.get_template('html/edit_student.html')
+#   return HttpResponse(template.render())
+
+def edit_student(request, id):
+  student = Student.objects.get(id=id)
   template = loader.get_template('html/edit_student.html')
-  return HttpResponse(template.render())
+  context = {
+    'student': student
+    }
+  return HttpResponse(template.render(context, request))
+
+def updaterecord(request, id):
+
+  name = request.POST['name']
+  email = request.POST['email']
+  gpa = request.POST['gpa']
+  level = request.POST['level']
+  gender = request.POST['gender']
+  status = request.POST['status']
+  student = Student.objects.get(id=id)
+  student.name = name
+  student.email = email
+  student.gpa = gpa
+  student.level = level
+  student.gender = gender
+  student.status = status
+  student.save()
+  #template = loader.get_template('html/student_list.html')
+  #return HttpResponse(template.render())
+
+  return HttpResponseRedirect(reverse('student_list'))
+
+
+def delete(request, id):
+  student = Student.objects.get(id=id)
+  student.delete()
+  return HttpResponseRedirect(reverse('student_list'))
+
+
 
 def assign_department(request):
   template = loader.get_template('html/assign_department.html')
   return HttpResponse(template.render())
+
+def assign_department(request, id):
+  student = Student.objects.get(id=id)
+  template = loader.get_template('html/assign_department.html')
+  context = {
+    'student': student
+    }
+  return HttpResponse(template.render(context, request))
+
+def updateDep(request, id):
+
+  # name = request.POST['name']
+  # email = request.POST['email']
+  # gpa = request.POST['gpa']
+  dep = request.POST['dep']
+  # level = request.POST['level']
+  # gender = request.POST['gender']
+  # status = request.POST['status']
+  student = Student.objects.get(id=id)
+  # student.name = name
+  student.dep = dep
+  # student.email = email
+  # student.gpa = gpa
+  # student.level = lev/el
+  # student.gender = gender
+  # student.status = status
+  student.save()
+  #template = loader.get_template('html/student_list.html')
+  #return HttpResponse(template.render())
+
+  return HttpResponseRedirect(reverse('student_list'))
 
 
 ####################  Mohamed Elmanori End    ####################
@@ -126,9 +195,13 @@ def student_list(request):
 
 ####################  Sahar Start  ####################
 
+# def search(request):
+#   template = loader.get_template('html/search.html')
+#   return HttpResponse(template.render())
+
 def search(request):
-  template = loader.get_template('html/search.html')
-  return HttpResponse(template.render())
+    students = Student.objects.all()
+    return render(request, 'html/search.html', {'students':students})
 
 ####################  Sahar End    ####################
 
