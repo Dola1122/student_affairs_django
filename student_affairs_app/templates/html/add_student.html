@@ -37,6 +37,13 @@
     <div class="card">
         <h1>Add student</h1>
         <section class="main">
+            {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="success">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
             <form id="addStudentForm" action="{% url 'add_student' %}" method="POST">
                 {% csrf_token %}

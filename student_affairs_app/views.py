@@ -12,9 +12,10 @@ from django.contrib import messages
 
 ####################  Ahmed Adel Start  ####################
 
-def add_student(request):
-    template = loader.get_template('html/add_student.html')
-    return HttpResponse(template.render())
+# def add_student(request):
+#     template = loader.get_template('html/add_student.html')
+#     return HttpResponse(template.render())
+
 
 def add_student(request):
     if request.method == 'POST':
@@ -36,10 +37,13 @@ def add_student(request):
         # Display a success message
         messages.success(request, 'Student added successfully!')
         # Redirect to the same page or any other page you desire
-        # return redirect('add_student')
+        return redirect('add_student')
 
     # If the request method is GET, render the add_student.html template
-    return render(request, 'html/add_student.html')
+    stored_messages = messages.get_messages(request)
+    stored_messages.used = True  # Clear the messages after retrieving them
+    return render(request, 'html/add_student.html', {'messages': stored_messages})
+
 
 ####################  Ahmed Adel End    ####################
 
