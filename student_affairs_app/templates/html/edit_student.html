@@ -45,32 +45,32 @@
             {{ form.as_p }}
             <div class="inputbox">
                 <input type="text" name="name" id="name" value="{{ student.name }}"  required autofocus>
-                <label for="name">Enter Your Name</label>
+                <label for="name">Enter Name</label>
             </div>
             <div class="inputbox">
                 <input type="email " name="email" id="email" value="{{ student.email }}" required>
-                <label for="email">Enter Your Email</label>
+                <label for="email">Enter Email</label>
             </div>
             <div class="inputbox">
                 <input type="tel" name="mobile" id="mobile" value="{{ student.mobile }}" required disabled>
-                <label for="mobile">Your Phone Number</label>
+                <label for="mobile">Phone Number</label>
             </div>
             <div class="inputbox">
                 <input type="number" name="IDnum" id="ID" value="{{ student.IDnum }}" required max="20231999" maxlength="9" disabled>
-                <label for="ID">Your ID</label>
+                <label for="ID">ID</label>
             </div>
             <div class="inputbox">
                 <input type="text" name="birthDate" id="birthDate" value="{{ student.birthDate }}" required disabled>
-                <label for="birthDate">Enter Your Birth Date</label>
+                <label for="birthDate">Enter Birth Date</label>
             </div>
             <div class="inputbox">
                 <input type="number" name="gpa" id="gpa" value="{{ student.gpa }}" step="0.01" required min="0" max="4">
-                <label for="gpa">Enter Your GPA</label>
+                <label for="gpa">Enter GPA</label>
 
             </div>
             <div class="inputbox">
                 <input type="number" name="level" id="level" value="{{ student.level }}" step="1" min="1" max="4" required>
-                <label for="level">Enter Your Level</label>
+                <label for="level">Enter Level</label>
             </div>
             <div class="inputbox">
                 <input list="Department" id="dep" name="dep" value="{{ student.dep }}" required disabled>
@@ -84,7 +84,7 @@
             </div>
             <div class="inputbox">
                 <input list="Gender" id="gender" name="gender" value="{{ student.gender }}" required>
-                <label for="gender">Enter Your Gender</label>
+                <label for="gender">Enter Gender</label>
                 <datalist id="Gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>

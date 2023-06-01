@@ -113,40 +113,43 @@
 //     }
 
 // })
-
 const searchInput = document.getElementById("myInput");
 const searchType = document.getElementById("searchType");
 const searchTableBody = document.getElementById("searchTableBody");
 
+let timeoutId;
+
 searchInput.addEventListener("input", function() {
-  const query = searchInput.value;
-  const type = searchType.value;
+  clearTimeout(timeoutId);
 
-  // Make an Ajax request to the search_ajax URL
-  fetch(`/search-ajax/?query=${query}&type=${type}`)
-    .then(response => response.json())
-    .then(data => {
-      // Clear the existing table rows
-      searchTableBody.innerHTML = "";
+  timeoutId = setTimeout(() => {
+    const query = encodeURIComponent(searchInput.value);
+    const type = encodeURIComponent(searchType.value);
+    
+    fetch(`/search-ajax/?query=${query}&type=${type}`)
+      .then(response => response.json())
+      .then(data => {
+        searchTableBody.innerHTML = "";
 
-      // Append the new search results to the table
-      data.forEach(student => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${student.name}</td>
-          <td>${student.id}</td>
-          <td>${student.birthdate}</td>
-          <td>${student.gpa}</td>
-          <td>${student.level}</td>
-          <td>${student.department}</td>
-          <td>${student.gender}</td>
-          <td>${student.email}</td>
-          <td>${student.phone}</td>
-        `;
-        searchTableBody.appendChild(row);
+        data.forEach(student => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${student.name}</td>
+            <td>${student.id}</td>
+            <td>${student.birthdate}</td>
+            <td>${student.gpa}</td>
+            <td>${student.level}</td>
+            <td>${student.department}</td>
+            <td>${student.gender}</td>
+            <td>${student.email}</td>
+            <td>${student.phone}</td>
+          `;
+          searchTableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error("An error occurred during the search:", error);
+        // Additional error handling or user-friendly error display
       });
-    })
-    .catch(error => {
-      console.error("Error occurred during search:", error);
-    });
+  }, 500); // Adjust the delay (in milliseconds) according to your needs
 });
