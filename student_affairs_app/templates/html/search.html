@@ -63,7 +63,7 @@
 
 {#        <table inputmode="html" id="searched" style="border-collapse: collapse; margin: 50px 0px 50px 0px; font-size: 0.9em; min-width: 1400px;">#}
         <table inputmode="html" id="searched">
-            <caption class="tableName">Students that matches your search</caption> <!--naming the table-->
+            <caption class="tableName">Active students that matches your search</caption> <!--naming the table-->
             <thead id="searchTableHead">
 {#                <tr style="background-color: #4b5054; color: white; font-width: bold;">#}
                 <tr>
@@ -76,7 +76,6 @@
                     <td>Gender</td>
                     <td>Email</td>
                     <td>Phone number</td>
-                    <td>Status</td>
                     <td></td>
                     <td></td>
 {#                    <td>Status</td>#}
@@ -86,6 +85,7 @@
 {#            <tbody id="searchTableBody" style="font-weight: normal;">#}
             <tbody id="searchTableBody">
                 {% for student in students %}
+                    {% if student.status == 'active' or student.status == 'Active' %}
 {#                        <tr style="border-bottom: 1px solid #dddddd">#}
                         <tr>
                             <td>{{ student.name }}</td>
@@ -97,7 +97,6 @@
                             <td>{{ student.gender }}</td>
                             <td>{{ student.email }}</td>
                             <td>{{ student.mobile }}</td>
-                            <td>{{ student.status }}</td>
 {#                            <td>{{ student.status }}</td>#}
                             <td><a type="button" href="edit_student.html/{{ student.id }}" id="editButton" class="studentButtons">Edit</a></td>
                             {% if student.dep == 'General' %}
@@ -107,6 +106,7 @@
                             {% endif %}
 
                         </tr>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>
