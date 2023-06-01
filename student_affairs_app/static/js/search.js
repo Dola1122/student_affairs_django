@@ -142,8 +142,8 @@ searchInput.addEventListener("input", function() {
           <td>${student.gender}</td>
           <td>${student.email}</td>
           <td>${student.phone}</td>
-          <td><a type="button" href="edit_student.html/{{ student.id }}" id="editButton" class="studentButtons">Edit</a></td>
-          <td><a type="button" href="assign_department.html/{{ student.id }}" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
+          <td><a type="button" href="edit_student.html/${ student.id }" id="editButton" class="studentButtons">Edit</a></td>
+          <td><a type="button" href="assign_department.html/${ student.id }" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
         `;
         searchTableBody.appendChild(row);
       });
