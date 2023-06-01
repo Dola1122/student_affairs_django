@@ -219,7 +219,7 @@ def search_ajax(request):
     query = request.GET.get('query')
     search_type = request.GET.get('type')
     
-    if query and search_type:
+    if search_type:
         if search_type == 'name':
             students = Student.objects.filter(name__icontains=query)
         elif search_type == 'id':
