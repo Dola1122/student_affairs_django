@@ -18,4 +18,6 @@ urlpatterns = [
     path('html/edit_student.html/delete/<int:id>', views.delete, name='delete'),
     path('html/assign_department.html/<int:id>',views.assign_department,name='assign_department'),
     path('html/assign_department.html/updateDep/<int:id>',views.updateDep,name='updateDep'),
+    path('switch_state/<int:student_id>/', views.switch_state, name='switch_state'),
+
 ]

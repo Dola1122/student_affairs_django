@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -198,7 +198,15 @@ def student_list(request):
 
 ####################  Ahmed Younes End    ####################
 
-
+def switch_state(request, student_id):
+    student = get_object_or_404(Student, id=student_id)
+    # Toggle the student's status
+    if student.status == "active":
+       student.status = "inactive"
+    else :
+       student.status = "active"
+    student.save()
+    return redirect('student_list')
 
 
 ####################  Sahar Start  ####################
