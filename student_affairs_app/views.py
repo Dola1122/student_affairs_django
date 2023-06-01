@@ -6,7 +6,7 @@ from .models import Admin, Student
 from django.contrib.auth.hashers import make_password
 from .forms import LoginForm
 from django.contrib import messages
-
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -210,6 +210,43 @@ def student_list(request):
 def search(request):
     students = Student.objects.all()
     return render(request, 'html/search.html', {'students':students})
+
+
+
+
+
+def search_ajax(request):
+    query = request.GET.get('query')
+    search_type = request.GET.get('type')
+    
+    if query and search_type:
+        if search_type == 'name':
+            students = Student.objects.filter(name__icontains=query)
+        elif search_type == 'id':
+            students = Student.objects.filter(IDnum__icontains=query)
+        elif search_type == 'department':
+            students = Student.objects.filter(dep__icontains=query)
+        else:
+            students = []
+    else:
+        students = []
+    
+    # Construct the JSON response
+    response_data = []
+    for student in students:
+        response_data.append({
+            'name': student.name,
+            'id': student.IDnum,
+            'birthdate': student.birthDate,
+            'gpa': student.gpa,
+            'level': student.level,
+            'department': student.dep,
+            'gender': student.gender,
+            'email': student.email,
+            'phone': student.mobile,
+        })
+    
+    return JsonResponse(response_data, safe=False)
 
 ####################  Sahar End    ####################
 

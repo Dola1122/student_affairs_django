@@ -76,41 +76,77 @@
 
 
 
-let column = document.getElementById("searchType");
+// let column = document.getElementById("searchType");
 
-let indx = 0;
-column.addEventListener("change", function () {
-    switch (column.value) {
-        case "name":
-            indx = 0;
-            break;
-        case "id":
-            indx = 1;
-            break;
-        case "department":
-            indx = 5;
-            break;
-        default:
-            indx = 0;
-    }
-})
+// let indx = 0;
+// column.addEventListener("change", function () {
+//     switch (column.value) {
+//         case "name":
+//             indx = 0;
+//             break;
+//         case "id":
+//             indx = 1;
+//             break;
+//         case "department":
+//             indx = 5;
+//             break;
+//         default:
+//             indx = 0;
+//     }
+// })
+
+// const searchInput = document.getElementById("myInput");
+// const tableBodysh = document.getElementById("searchTableBody");
+
+// searchInput.addEventListener("input", function () {
+//     let rows = tableBodysh.getElementsByTagName("tr")
+//     for (let i = 0; i < rows.length; i++) {
+//         let rowData = rows[i].getElementsByTagName("td")
+//         let cellData = rowData[indx].textContent.toLowerCase();
+//         // console.log(searchInput.value)
+//         if (cellData.indexOf(searchInput.value.toLowerCase()) > -1) {
+//             rows[i].style.display = "";
+//         }
+//         else {
+//             rows[i].style.display = "none";
+//         }
+//     }
+
+// })
 
 const searchInput = document.getElementById("myInput");
-const tableBodysh = document.getElementById("searchTableBody");
+const searchType = document.getElementById("searchType");
+const searchTableBody = document.getElementById("searchTableBody");
 
-searchInput.addEventListener("input", function () {
-    let rows = tableBodysh.getElementsByTagName("tr")
-    for (let i = 0; i < rows.length; i++) {
-        let rowData = rows[i].getElementsByTagName("td")
-        let cellData = rowData[indx].textContent.toLowerCase();
-        // console.log(searchInput.value)
-        if (cellData.indexOf(searchInput.value.toLowerCase()) > -1) {
-            rows[i].style.display = "";
-        }
-        else {
-            rows[i].style.display = "none";
-        }
-    }
+searchInput.addEventListener("input", function() {
+  const query = searchInput.value;
+  const type = searchType.value;
 
-})
+  // Make an Ajax request to the search_ajax URL
+  fetch(`/search-ajax/?query=${query}&type=${type}`)
+    .then(response => response.json())
+    .then(data => {
+      // Clear the existing table rows
+      searchTableBody.innerHTML = "";
 
+      // Append the new search results to the table
+      data.forEach(student => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${student.name}</td>
+          <td>${student.id}</td>
+          <td>${student.birthdate}</td>
+          <td>${student.gpa}</td>
+          <td>${student.level}</td>
+          <td>${student.department}</td>
+          <td>${student.gender}</td>
+          <td>${student.email}</td>
+          <td>${student.phone}</td>
+        `;
+        searchTableBody.appendChild(row);
+      });
+    })
+    .catch(error => {
+      console.error("Error occurred during search:", error);
+    });
+});
