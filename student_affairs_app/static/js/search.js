@@ -113,43 +113,100 @@
 //     }
 
 // })
+// const searchInput = document.getElementById("myInput");
+// const searchType = document.getElementById("searchType");
+// const searchTableBody = document.getElementById("searchTableBody");
+//
+// let timeoutId;
+//
+// searchInput.addEventListener("input", function() {
+//   clearTimeout(timeoutId);
+//
+//   timeoutId = setTimeout(() => {
+//     const query = encodeURIComponent(searchInput.value);
+//     const type = encodeURIComponent(searchType.value);
+//
+//     fetch(`/search-ajax/?query=${query}&type=${type}`)
+//       .then(response => response.json())
+//       .then(data => {
+//         searchTableBody.innerHTML = "";
+//
+//         data.forEach(student => {
+//           const row = document.createElement("tr");
+//           row.innerHTML = `
+//             <td>${student.name}</td>
+//             <td>${student.id}</td>
+//             <td>${student.birthdate}</td>
+//             <td>${student.gpa}</td>
+//             <td>${student.level}</td>
+//             <td>${student.department}</td>
+//             <td>${student.gender}</td>
+//             <td>${student.email}</td>
+//             <td>${student.phone}</td>
+//           `;
+//           searchTableBody.appendChild(row);
+//         });
+//       })
+//       .catch(error => {
+//         console.error("An error occurred during the search:", error);
+//         // Additional error handling or user-friendly error display
+//       });
+//   }, 500); // Adjust the delay (in milliseconds) according to your needs
+// });
+
+
 const searchInput = document.getElementById("myInput");
 const searchType = document.getElementById("searchType");
 const searchTableBody = document.getElementById("searchTableBody");
 
-let timeoutId;
-
 searchInput.addEventListener("input", function() {
-  clearTimeout(timeoutId);
+  const query = searchInput.value;
+  const type = searchType.value;
 
-  timeoutId = setTimeout(() => {
-    const query = encodeURIComponent(searchInput.value);
-    const type = encodeURIComponent(searchType.value);
-    
-    fetch(`/search-ajax/?query=${query}&type=${type}`)
-      .then(response => response.json())
-      .then(data => {
-        searchTableBody.innerHTML = "";
+  // Make an Ajax request to the search_ajax URL
+  fetch(`/search-ajax/?query=${query}&type=${type}`)
+    .then(response => response.json())
+    .then(data => {
+      // Clear the existing table rows
+      searchTableBody.innerHTML = "";
 
-        data.forEach(student => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${student.name}</td>
-            <td>${student.id}</td>
-            <td>${student.birthdate}</td>
-            <td>${student.gpa}</td>
-            <td>${student.level}</td>
-            <td>${student.department}</td>
-            <td>${student.gender}</td>
-            <td>${student.email}</td>
-            <td>${student.phone}</td>
-          `;
-          searchTableBody.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error("An error occurred during the search:", error);
-        // Additional error handling or user-friendly error display
+      // Append the new search results to the table
+      data.forEach(student => {
+        const row = document.createElement("tr");
+        // department = student.dep;
+        if (`${student.department}` === "General") {
+            row.innerHTML = `
+              <td>${student.name}</td>
+              <td>${student.IDnum}</td>
+              <td>${student.birthdate}</td>
+              <td>${student.gpa}</td>
+              <td>${student.level}</td>
+              <td>${student.department}</td>
+              <td>${student.gender}</td>
+              <td>${student.email}</td>
+              <td>${student.phone}</td>
+              <td><a type="button" href="edit_student.html/${student.id}" id="editButton" class="studentButtons">Edit</a></td>
+              <td><a type="button" href="assign_department.html/${student.id}" id="changeDepartmentButton" class="studentButtons">Assign department</a></td>
+            `;
+        } else {
+            row.innerHTML = `
+              <td>${student.name}</td>
+              <td>${student.IDnum}</td>
+              <td>${student.birthdate}</td>
+              <td>${student.gpa}</td>
+              <td>${student.level}</td>
+              <td>${student.department}</td>
+              <td>${student.gender}</td>
+              <td>${student.email}</td>
+              <td>${student.phone}</td>
+              <td><a type="button" href="edit_student.html/${student.id}" id="editButton" class="studentButtons">Edit</a></td>
+              <td><a type="button" href="assign_department.html/${student.id}" id="changeDepartmentButton" class="studentButtons">Change department</a></td>
+            `;
+        }
+        searchTableBody.appendChild(row);
       });
-  }, 500); // Adjust the delay (in milliseconds) according to your needs
+    })
+    .catch(error => {
+      console.error("Error occurred during search:", error);
+    });
 });

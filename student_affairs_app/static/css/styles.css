@@ -411,7 +411,7 @@ td {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9em;
-  min-width: 1400px;
+  min-width: 1500px;
   margin: 50px 0 50px 0;;
 }
 
@@ -419,6 +419,50 @@ td {
   color: white;
   background-color: #4b5054;
   font-width: bold;
+}
+
+#nameCell {
+  min-width: 200px;
+}
+
+#idCell {
+  min-width: 100px;
+}
+
+#DoBCell {
+  min-width: 170px;
+}
+
+#gpaCell {
+  min-width: 100px;
+}
+
+#levelCell {
+  min-width: 100px;
+}
+
+#depCell {
+  min-width: 150px;
+}
+
+#genderCell {
+  min-width: 100px;
+}
+
+#emailCell {
+  min-width: 200px;
+}
+
+#phoneCell {
+  min-width: 165px;
+}
+
+#editCell {
+  min-width: 120px;
+}
+
+#depButtonCell {
+  min-width: 270px;
 }
 
 #searchTableBody {

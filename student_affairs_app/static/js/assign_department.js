@@ -30,7 +30,7 @@ function assing(e) {
         window.location.href = "student_list.html";
     }
     else {
-        alert("level no enugh")
+        alert("level not enough")
         // window.location.href = "student_list.html";
     }
 

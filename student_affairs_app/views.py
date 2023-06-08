@@ -244,7 +244,8 @@ def search_ajax(request):
     for student in students:
         response_data.append({
             'name': student.name,
-            'id': student.IDnum,
+            'id': student.id,
+            'IDnum': student.IDnum,
             'birthdate': student.birthDate,
             'gpa': student.gpa,
             'level': student.level,
